@@ -1,730 +1,131 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="h-full">
  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio IA - Grupo 2</title>
-  <meta name="description" content="Portafolio del Curso de Inteligencia Artificial - Grupo 2">
   <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-      color: #e0e0e0;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('./fondo.png') center/cover;
-  filter: blur(4px) brightness(0.6);
-  z-index: 1;
-}
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    .container-wrapper {
-      display: flex;
-      flex: 1;
-      height: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%); color: #e0e0e0; overflow-x: hidden; }
+    body { display: flex; flex-direction: column; min-height: 100%; position: relative; }
+    
     /* SIDEBAR */
-    .sidebar {
-      width: 280px;
-      background: linear-gradient(180deg, #16213e 0%, #0f3460 100%);
-      padding: 40px 20px;
-      position: fixed;
-      height: 100%;
-      left: 0;
-      top: 0;
-      overflow-y: auto;
-      border-right: 2px solid #00d4ff;
-      z-index: 100;
-    }
-
-    .sidebar-logo {
-      font-size: 24px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 30px;
-      font-family: 'Syne', sans-serif;
-      letter-spacing: 2px;
-    }
-
-    .nav-menu {
-      list-style: none;
-    }
-
-    .nav-item {
-      margin-bottom: 15px;
-    }
-
-    .nav-link {
-      color: #a0a0a0;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 12px 15px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover {
-      color: #00d4ff;
-      background: rgba(0, 212, 255, 0.1);
-      padding-left: 20px;
-    }
-
-    .nav-link.active {
-      color: #00d4ff;
-      background: rgba(0, 212, 255, 0.15);
-      border-left: 3px solid #00d4ff;
-      padding-left: 12px;
-    }
-
-    .nav-icon {
-      width: 18px;
-      height: 18px;
-    }
+    .sidebar { width: 280px; background: linear-gradient(180deg, #16213e 0%, #0f3460 100%); padding: 40px 20px; position: fixed; height: 100%; left: 0; top: 0; overflow-y: auto; border-right: 2px solid #00d4ff; z-index: 100; }
+    .sidebar-logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 30px; font-family: 'Syne', sans-serif; letter-spacing: 2px; }
+    .nav-menu { list-style: none; }
+    .nav-item { margin-bottom: 15px; }
+    .nav-link { color: #a0a0a0; text-decoration: none; font-size: 14px; font-weight: 500; padding: 12px 15px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; cursor: pointer; }
+    .nav-link:hover { color: #00d4ff; background: rgba(0, 212, 255, 0.1); padding-left: 20px; }
+    .nav-link.active { color: #00d4ff; background: rgba(0, 212, 255, 0.15); border-left: 3px solid #00d4ff; padding-left: 12px; }
+    .nav-icon { width: 18px; height: 18px; }
 
     /* MAIN CONTENT */
-    .main-content {
-      margin-left: 280px;
-      flex: 1;
-      overflow-y: auto;
-      padding: 60px 50px;
-      max-width: calc(100% - 280px);
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-content {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .section-content.active {
-      display: block;
-      opacity: 1;
-    }
-
-    #hero {
-      display: block !important;
-    }
+    .main-content { margin-left: 280px; flex: 1; overflow-y: auto; padding: 60px 50px; max-width: calc(100% - 280px); position: relative; z-index: 2; height: 100%; }
+    .section-content { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+    .section-content.active { display: block; opacity: 1; }
+    #hero { display: block !important; }
 
     /* HERO SECTION */
-    .hero-section {
-      margin-bottom: 80px;
-      animation: slideInUp 0.8s ease;
-    }
-
-    .hero-title {
-      font-size: 56px;
-      font-weight: 800;
-      font-family: 'Syne', sans-serif;
-      background: linear-gradient(135deg, #00d4ff, #00f7ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      font-size: 28px;
-      color: #a0a0a0;
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-
-    .typing-text {
-      font-size: 28px;
-      color: #00d4ff;
-      font-weight: 600;
-      min-height: 35px;
-    }
-
-    .hero-description {
-      font-size: 16px;
-      color: #b0b0b0;
-      line-height: 1.8;
-      max-width: 600px;
-      margin-top: 20px;
-    }
-
-    .integrantes {
-      background: rgba(0, 212, 255, 0.05);
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      border-radius: 12px;
-      padding: 25px;
-      margin-top: 40px;
-      max-width: 600px;
-    }
-
-    .integrantes-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #00d4ff;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .integrantes-list {
-      list-style: none;
-    }
-
-    .integrantes-item {
-      color: #c0c0c0;
-      padding: 8px 0;
-      padding-left: 25px;
-      position: relative;
-      font-weight: 500;
-    }
-
-    .integrantes-item:before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: #00d4ff;
-    }
+    .hero-section { margin-bottom: 80px; animation: slideInUp 0.8s ease; }
+    .hero-title { font-size: 56px; font-weight: 800; font-family: 'Syne', sans-serif; background: linear-gradient(135deg, #00d4ff, #00f7ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; line-height: 1.2; }
+    .hero-subtitle { font-size: 28px; color: #a0a0a0; margin-bottom: 20px; font-weight: 500; }
+    .typing-text { font-size: 28px; color: #00d4ff; font-weight: 600; min-height: 35px; }
+    .hero-description { font-size: 16px; color: #b0b0b0; line-height: 1.8; max-width: 600px; margin-top: 20px; }
+    
+    .integrantes { background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 12px; padding: 25px; margin-top: 40px; max-width: 600px; }
+    .integrantes-title { font-size: 18px; font-weight: 700; color: #00d4ff; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .integrantes-list { list-style: none; }
+    .integrantes-item { color: #c0c0c0; padding: 8px 0; padding-left: 25px; position: relative; font-weight: 500; }
+    .integrantes-item:before { content: "✦"; position: absolute; left: 0; color: #00d4ff; }
 
     /* SECTIONS */
-    section {
-      margin-bottom: 80px;
-      scroll-margin-top: 100px;
-    }
-
-    .section-title {
-      font-size: 36px;
-      font-weight: 800;
-      font-family: 'Syne', sans-serif;
-      color: #ffffff;
-      margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .section-title::before {
-      content: "";
-      width: 5px;
-      height: 40px;
-      background: linear-gradient(180deg, #00d4ff, #0099ff);
-      border-radius: 3px;
-    }
+    section { margin-bottom: 80px; scroll-margin-top: 100px; }
+    .section-title { font-size: 36px; font-weight: 800; font-family: 'Syne', sans-serif; color: #ffffff; margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
+    .section-title::before { content: ""; width: 5px; height: 40px; background: linear-gradient(180deg, #00d4ff, #0099ff); border-radius: 3px; }
 
     /* TAREAS GRID */
-    .tareas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-
-    .tarea-card {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05));
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      border-radius: 12px;
-      padding: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tarea-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .tarea-card:hover {
-      border-color: #00d4ff;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
-      transform: translateY(-5px);
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-    }
-
-    .tarea-card:hover::before {
-      left: 100%;
-    }
-
-    .tarea-number {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 20px;
-      color: #0f0f1e;
-      margin-bottom: 15px;
-    }
-
-    .tarea-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .tarea-description {
-      color: #a0a0a0;
-      font-size: 14px;
-      line-height: 1.6;
-    }
+    .tareas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 40px; }
+    .tarea-card { background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05)); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 12px; padding: 30px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .tarea-card:hover { border-color: #00d4ff; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1)); transform: translateY(-5px); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2); }
+    .tarea-number { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, #00d4ff, #0099ff); border-radius: 50%; font-weight: 700; font-size: 20px; color: #0f0f1e; margin-bottom: 15px; }
+    .tarea-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
+    .tarea-description { color: #a0a0a0; font-size: 14px; line-height: 1.6; }
 
     /* HERRAMIENTAS GRID */
-    .herramientas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-    }
-
-    .herramienta-item {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08));
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 10px;
-      padding: 25px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      min-height: 150px;
-    }
-
-    .herramienta-item:hover {
-      border-color: #00d4ff;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 153, 255, 0.15));
-      transform: translateY(-8px);
-      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.25);
-    }
-
-    .herramienta-icon {
-      font-size: 32px;
-      color: #00d4ff;
-    }
-
-    .herramienta-nombre {
-      font-size: 14px;
-      font-weight: 600;
-      color: #ffffff;
-    }
+    .herramientas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+    .herramienta-item { background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08)); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 10px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 150px; }
+    .herramienta-item:hover { border-color: #00d4ff; background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 153, 255, 0.15)); transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0, 212, 255, 0.25); }
+    .herramienta-icon { font-size: 32px; color: #00d4ff; }
+    .herramienta-nombre { font-size: 14px; font-weight: 600; color: #ffffff; }
 
     /* EVALUACIONES */
-    .evaluaciones-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .evaluacion-card {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05));
-      border: 2px solid rgba(0, 212, 255, 0.2);
-      border-radius: 12px;
-      padding: 25px;
-      transition: all 0.3s ease;
-    }
-
-    .evaluacion-card:hover {
-      border-color: #00d4ff;
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-      transform: translateY(-5px);
-    }
-
-    .evaluacion-type {
-      display: inline-block;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      color: #0f0f1e;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .evaluacion-name {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .evaluacion-info {
-      color: #a0a0a0;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+    .evaluaciones-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .evaluacion-card { background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05)); border: 2px solid rgba(0, 212, 255, 0.2); border-radius: 12px; padding: 25px; transition: all 0.3s ease; cursor: pointer; }
+    .evaluacion-card:hover { border-color: #00d4ff; box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2); transform: translateY(-5px); }
+    .evaluacion-type { display: inline-block; background: linear-gradient(135deg, #00d4ff, #0099ff); color: #0f0f1e; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+    .evaluacion-name { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
+    .evaluacion-info { color: #a0a0a0; font-size: 13px; line-height: 1.6; }
 
     /* CONTACT SECTION */
-    .contact-section {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08));
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      border-radius: 12px;
-      padding: 40px;
-      text-align: center;
-    }
-
-    .contact-title {
-      font-size: 28px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
-
-    .contact-info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #0f0f1e;
-      font-weight: 700;
-    }
-
-    .contact-label {
-      color: #a0a0a0;
-      font-size: 13px;
-    }
-
-    .contact-value {
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 14px;
-    }
+    .contact-section { background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08)); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 12px; padding: 40px; text-align: center; }
+    .contact-title { font-size: 28px; font-weight: 700; color: #ffffff; margin-bottom: 15px; }
+    .contact-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 30px; }
+    .contact-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .contact-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #00d4ff, #0099ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0f0f1e; font-weight: 700; }
+    .contact-label { color: #a0a0a0; font-size: 13px; }
+    .contact-value { color: #ffffff; font-weight: 600; font-size: 14px; }
 
     /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(0, 212, 255, 0.2);
-      color: #707070;
-      font-size: 13px;
-      margin-top: 60px;
-    }
+    .footer { text-align: center; padding: 30px; border-top: 1px solid rgba(0, 212, 255, 0.2); color: #707070; font-size: 13px; margin-top: 60px; }
 
     /* ANIMATIONS */
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.6s ease;
-    }
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .fade-in { animation: fadeIn 0.6s ease; }
 
     /* SCROLLBAR */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #00d4ff;
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #00b3cc;
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b3cc; }
 
     /* MODAL */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 200;
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-      border: 2px solid #00d4ff;
-      border-radius: 16px;
-      max-width: 900px;
-      width: 100%;
-      max-height: 85%;
-      overflow-y: auto;
-      padding: 40px;
-      animation: slideInUp 0.4s ease;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #0f0f1e;
-      font-size: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .modal-close:hover {
-      transform: rotate(90deg) scale(1.1);
-    }
-
-    .modal-header {
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid rgba(0, 212, 255, 0.2);
-    }
-
-    .modal-title {
-      font-size: 32px;
-      font-weight: 800;
-      font-family: 'Syne', sans-serif;
-      background: linear-gradient(135deg, #00d4ff, #00f7ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 10px;
-    }
-
-    .modal-description {
-      color: #a0a0a0;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .files-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .file-item {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08));
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 12px;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .file-item:hover {
-      border-color: #00d4ff;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 153, 255, 0.15));
-      transform: translateY(-5px);
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-    }
-
-    .file-icon {
-      font-size: 32px;
-      text-align: center;
-    }
-
-    .file-name {
-      color: #00d4ff;
-      font-weight: 700;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .file-desc {
-      color: #909090;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
-    }
-
-    .file-viewer {
-      width: 100%;
-      height: 600px;
-      border: 2px solid rgba(0, 212, 255, 0.3);
-      border-radius: 12px;
-      background: #0a0a14;
-      margin-top: 20px;
-    }
-
-    .files-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .file-tab {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08));
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 8px;
-      padding: 10px 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 13px;
-      font-weight: 600;
-      color: #a0a0a0;
-    }
-
-    .file-tab:hover {
-      border-color: #00d4ff;
-      color: #00d4ff;
-    }
-
-    .file-tab.active {
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      color: #0f0f1e;
-      border-color: #00d4ff;
-    }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 200; backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: linear-gradient(135deg, #16213e 0%, #0f3460 100%); border: 2px solid #00d4ff; border-radius: 16px; max-width: 900px; width: 100%; max-height: 85%; overflow-y: auto; padding: 40px; animation: slideInUp 0.4s ease; position: relative; }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: linear-gradient(135deg, #00d4ff, #0099ff); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #0f0f1e; font-size: 24px; transition: all 0.3s ease; }
+    .modal-close:hover { transform: rotate(90deg) scale(1.1); }
+    .modal-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); }
+    .modal-title { font-size: 32px; font-weight: 800; font-family: 'Syne', sans-serif; background: linear-gradient(135deg, #00d4ff, #00f7ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+    .modal-description { color: #a0a0a0; font-size: 14px; line-height: 1.6; }
+    .files-list { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+    .file-tab { background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 153, 255, 0.08)); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 8px; padding: 10px 15px; cursor: pointer; transition: all 0.3s ease; font-size: 13px; font-weight: 600; color: #a0a0a0; }
+    .file-tab:hover { border-color: #00d4ff; color: #00d4ff; }
+    .file-tab.active { background: linear-gradient(135deg, #00d4ff, #0099ff); color: #0f0f1e; border-color: #00d4ff; }
+    .file-viewer { width: 100%; height: 600px; border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 12px; background: #0a0a14; margin-top: 20px; }
+    .video-button { background: linear-gradient(135deg, #00d4ff, #0099ff); color: #0f0f1e; border: none; padding: 15px 30px; font-size: 16px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+    .video-button:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3); }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .sidebar {
-        width: 250px;
-        padding: 30px 15px;
-      }
-
-      .main-content {
-        margin-left: 250px;
-        padding: 40px 25px;
-      }
-
-      .hero-title {
-        font-size: 36px;
-      }
-
-      .hero-subtitle {
-        font-size: 20px;
-      }
-
-      .typing-text {
-        font-size: 20px;
-      }
-
-      .tareas-grid, .herramientas-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title {
-        font-size: 26px;
-      }
+      .sidebar { width: 250px; padding: 30px 15px; }
+      .main-content { margin-left: 250px; padding: 40px 25px; }
+      .hero-title { font-size: 36px; }
+      .hero-subtitle { font-size: 20px; }
+      .typing-text { font-size: 20px; }
+      .tareas-grid, .herramientas-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 26px; }
     }
 
     @media (max-width: 480px) {
-      .sidebar {
-        width: 200px;
-        padding: 20px 10px;
-      }
-
-      .main-content {
-        margin-left: 200px;
-        padding: 30px 15px;
-      }
-
-      .hero-title {
-        font-size: 28px;
-      }
-
-      .hero-subtitle {
-        font-size: 18px;
-      }
-
-      .section-title {
-        font-size: 22px;
-      }
+      .sidebar { width: 200px; padding: 20px 10px; }
+      .main-content { margin-left: 200px; padding: 30px 15px; }
+      .hero-title { font-size: 28px; }
+      .hero-subtitle { font-size: 18px; }
+      .section-title { font-size: 22px; }
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
@@ -732,25 +133,25 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body>
-  <div class="container-wrapper"><!-- SIDEBAR -->
+  <div style="display: flex; height: 100%; width: 100%;"><!-- SIDEBAR -->
    <aside class="sidebar">
     <div class="sidebar-logo">
      IA
     </div>
     <nav>
      <ul class="nav-menu">
-      <li class="nav-item"><a href="#hero" class="nav-link active" onclick="setActive(this)"> <i class="nav-icon" data-lucide="home"></i> Inicio </a></li>
-      <li class="nav-item"><a href="#nosotros" class="nav-link" onclick="setActive(this)"> <i class="nav-icon" data-lucide="users"></i> Nosotros </a></li>
-      <li class="nav-item"><a href="#tareas" class="nav-link" onclick="setActive(this)"> <i class="nav-icon" data-lucide="book-open"></i> Tareas </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea1" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Tarea 1 </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea2" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Tarea 2 </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea3" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Tarea 3 </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea4" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Tarea 4 </a></li>
-      <li class="nav-item"><a href="#evaluaciones" class="nav-link" onclick="setActive(this)"> <i class="nav-icon" data-lucide="check-circle"></i> Evaluaciones </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#parcial01" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Parcial 01 </a></li>
-      <li class="nav-item" style="margin-left: 20px;"><a href="#eval02" class="nav-link" style="font-size: 13px;" onclick="setActive(this)"> → Evaluación Continua 2 </a></li>
-      <li class="nav-item"><a href="#herramientas" class="nav-link" onclick="setActive(this)"> <i class="nav-icon" data-lucide="zap"></i> Herramientas IA </a></li>
-      <li class="nav-item"><a href="#contacto" class="nav-link" onclick="setActive(this)"> <i class="nav-icon" data-lucide="mail"></i> Contacto </a></li>
+      <li class="nav-item"><a href="#hero" class="nav-link active" onclick="setActive(this)"><i class="nav-icon" data-lucide="home"></i>Inicio</a></li>
+      <li class="nav-item"><a href="#nosotros" class="nav-link" onclick="setActive(this)"><i class="nav-icon" data-lucide="users"></i>Nosotros</a></li>
+      <li class="nav-item"><a href="#tareas" class="nav-link" onclick="setActive(this)"><i class="nav-icon" data-lucide="book-open"></i>Tareas</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea1" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Tarea 1</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea2" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Tarea 2</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea3" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Tarea 3</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#tarea4" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Tarea 4</a></li>
+      <li class="nav-item"><a href="#evaluaciones" class="nav-link" onclick="setActive(this)"><i class="nav-icon" data-lucide="check-circle"></i>Evaluaciones</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#parcial01" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Parcial 01</a></li>
+      <li class="nav-item" style="margin-left: 20px;"><a href="#eval02" class="nav-link" style="font-size: 13px;" onclick="setActive(this)">→ Eval. Continua 2</a></li>
+      <li class="nav-item"><a href="#herramientas" class="nav-link" onclick="setActive(this)"><i class="nav-icon" data-lucide="zap"></i>Herramientas IA</a></li>
+      <li class="nav-item"><a href="#contacto" class="nav-link" onclick="setActive(this)"><i class="nav-icon" data-lucide="mail"></i>Contacto</a></li>
      </ul>
     </nav>
    </aside><!-- MAIN CONTENT -->
@@ -763,7 +164,8 @@
      </div>
      <p class="hero-description">Explora el viaje de nuestro grupo a través del apasionante mundo de la Inteligencia Artificial. Aquí encontrarás nuestras tareas, evaluaciones y las herramientas IA que hemos utilizado para aprender y crecer.</p>
      <div class="integrantes">
-      <div class="integrantes-title"><i class="nav-icon" data-lucide="users"></i> Integrantes del Grupo
+      <div class="integrantes-title">
+       <i class="nav-icon" data-lucide="users"></i> Integrantes del Grupo
       </div>
       <ul class="integrantes-list" id="integrantes-list">
        <li class="integrantes-item">Lizbeth Sánchez Cajavilca</li>
@@ -847,14 +249,14 @@
         Evaluación Continua 2
        </div>
        <div class="evaluacion-info">
-        Evaluación de desempeño en el uso de herramientas IA, creatividad en prompts y aplicación práctica en proyectos.
+        Video animado producido integrando Suno (música IA), Gemini (imágenes), e InVideo.AI (edición).
        </div>
       </div>
      </div>
     </section><!-- HERRAMIENTAS IA -->
     <section id="herramientas" class="fade-in section-content">
      <h2 class="section-title">Herramientas IA Utilizadas</h2>
-     <p style="font-size: 16px; color: #a0a0a0; margin-bottom: 30px;">Conoce las principales herramientas de Inteligencia Artificial que hemos utilizado y explorado:</p>
+     <p style="font-size: 16px; color: #a0a0a0; margin-bottom: 30px;">Conoce las principales herramientas de Inteligencia Artificial que hemos utilizado:</p>
      <div class="herramientas-grid">
       <div class="herramienta-item">
        <div class="herramienta-icon">
@@ -937,15 +339,26 @@
       <div class="contact-info-grid">
        <div class="contact-item">
         <div class="contact-icon">
-         📍
+         👩
         </div>
         <div class="contact-label">
-         Lizbeth Milagros Sanchez Cajavilca
-        </div><div class="contact-label">
-         Mixi Ingrid Lucero Arca Rubio
+         Lizbeth Milagros
         </div>
-        </div><div class="contact-label">
-         Neyla Yazzmine Astrid Arca Rubio
+       </div>
+       <div class="contact-item">
+        <div class="contact-icon">
+         👩
+        </div>
+        <div class="contact-label">
+         Mixi Ingrid Lucero
+        </div>
+       </div>
+       <div class="contact-item">
+        <div class="contact-icon">
+         👩
+        </div>
+        <div class="contact-label">
+         Neyla Yazzmine
         </div>
        </div>
       </div>
@@ -955,16 +368,14 @@
      <p>© 2024 Portafolio IA Grupo 2 | Curso de Inteligencia Artificial</p>
     </footer>
    </main>
-  </div><!-- MODALES DE TAREAS Y EVALUACIONES -->
+  </div><!-- MODAL -->
   <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-   <div class="modal-content" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+   <div class="modal-content" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-header" id="modal-header"></div>
     <div id="files-list" class="files-list"></div><iframe id="file-viewer" class="file-viewer" frameborder="0"></iframe>
    </div>
   </div>
   <script>
-    // Initialize Element SDK
     const defaultConfig = {
       grupo_nombre: "Portafolio IA Grupo 2",
       integrante_1: "Lizbeth Sánchez Cajavilca",
@@ -974,348 +385,110 @@
 
     const config = { ...defaultConfig };
 
-    // Datos de tareas, evaluaciones y archivos
     const contentData = {
-      tarea1: {
-        title: "Tarea 1: Introducción a la Inteligencia Artificial",
-        description: "Análisis de los tipos de IA explorados en la introducción al curso",
-        files: [
-          {
-            name: "Tipos de IA Analizados",
-            icon: "📋",
-            description: "Documento que analiza los diferentes tipos de Inteligencia Artificial: IA Débil, IA Fuerte, Machine Learning, Deep Learning y sus aplicaciones prácticas.",
-            url: "./T01.pdf"
-          }
-        ]
-      },
-      tarea2: {
-        title: "Tarea 2: Modelos de Lenguaje y Prompt Engineering",
-        description: "Exploración de modelos de lenguaje y técnicas de ingeniería de prompts",
-        files: [
-          {
-            name: "Actividad Tarea 2",
-            icon: "📝",
-            description: "Guía de actividades práctica sobre cómo formular prompts efectivos y explorar las capacidades de ChatGPT.",
-            url: "./T02.1.pdf"
-          },
-          {
-            name: "Sesión de Clase con IA",
-            icon: "🎓",
-            description: "Registro de la sesión de clase donde se utilizó IA para explicar conceptos de procesamiento de lenguaje natural.",
-            url: "./T02.2.pdf"
-          }
-        ]
-      },
-      tarea3: {
-        title: "Tarea 3: Aplicaciones Prácticas en Educación",
-        description: "Sesión práctica utilizando herramientas de IA educativa",
-        files: [
-          {
-            name: "Sesión con Wayground",
-            icon: "🎮",
-            description: "Documentación de la sesión práctica con Wayground, una plataforma de IA para crear experiencias educativas interactivas y gamificadas.",
-            url: "./T03.pdf"
-          }
-        ]
-      },
-      tarea4: {
-        title: "Tarea 4: Proyecto Final - Integración de Herramientas IA",
-        description: "Implementación de múltiples herramientas IA en un proyecto educativo",
-        files: [
-          {
-            name: "CalificaIA - Sesión y Lista de Cotejo",
-            icon: "✅",
-            description: "Registro de la sesión con CalificaIA, herramienta que utiliza IA para evaluar automáticamente trabajos estudiantiles con criterios personalizados.",
-            url: "./T04.1.pdf"
-          },
-          {
-            name: "EduTekalab - Sesión y Rúbrica",
-            icon: "📚",
-            description: "Documentación de la experiencia con EduTekalab, plataforma que integra IA para crear contenido educativo y rúbricas de evaluación automáticas.",
-            url: "./T04.2.pdf"
-          }
-        ]
-      },
-      parcial01: {
-        title: "Parcial 01: Evaluación Integral",
-        description: "Diseño de sesión de aprendizaje con integración crítica de herramientas IA",
-        files: [
-          {
-            name: "Estructura de la Elaboracion",
-            icon: "💬",
-            description: "Planificación de una sesión de aprendizaje fundamentada en competencias para personalizar el proceso de enseñanza.",
-            url: "./E01.1.pdf"
-          },
-          {
-            name: "Presentacion de la Estructura",
-            icon: "✨",
-            description: "Diseño didáctico que incorpora IA para generar contenido educativo adaptativo y recursos visuales con análisis crítico de su pertinencia pedagógica.",
-            url: "./E01.2.pdf"
-          },
-          {
-            name: "Sesión de Aprendizaje",
-            icon: "🎓",
-            description: "Implementación de una sesión de aprendizaje, considerando implicancias éticas y la justificación pedagógica de su uso como apoyo didáctico.",
-            url: "./E01.3.pdf"
-          }
-        ]
-      },
-      eval02: {
-        title: "Evaluación Continua 2: Proyecto Multimedia con IA",
-        description: "Video animado producido con herramientas de IA generativa",
-        files: [
-          {
-            name: "Video Animado - Producción IA",
-            icon: "🎬",
-            description: "Video creativo producido integrando Suno (generación de música IA), Gemini (creación de imágenes), e InVideo.AI (edición y dinamización). Demuestra la sinergia entre múltiples herramientas IA para crear contenido educativo multimedia de calidad profesional.",
-            url: "https://youtu.be/I4_NeTJIfLs"
-          }
-        ]
-      }
+      tarea1: { title: "Tarea 1: Introducción a la Inteligencia Artificial", description: "Análisis de los tipos de IA explorados", files: [{ name: "Tipos de IA Analizados", icon: "📋", description: "Documento que analiza los diferentes tipos de Inteligencia Artificial", url: "./T01.pdf" }] },
+      tarea2: { title: "Tarea 2: Modelos de Lenguaje y Prompt Engineering", description: "Exploración de modelos de lenguaje", files: [{ name: "Actividad Tarea 2", icon: "📝", description: "Guía sobre cómo formular prompts efectivos", url: "./T02.1.pdf" }, { name: "Sesión de Clase con IA", icon: "🎓", description: "Registro de la sesión de clase", url: "./T02.2.pdf" }] },
+      tarea3: { title: "Tarea 3: Aplicaciones Prácticas en Educación", description: "Sesión práctica con herramientas IA educativa", files: [{ name: "Sesión con Wayground", icon: "🎮", description: "Documentación de la sesión con Wayground", url: "./T03.pdf" }] },
+      tarea4: { title: "Tarea 4: Proyecto Final", description: "Integración de múltiples herramientas IA", files: [{ name: "CalificaIA - Sesión y Lista", icon: "✅", description: "Registro de la sesión con CalificaIA", url: "./T04.1.pdf" }, { name: "EduTekalab - Sesión y Rúbrica", icon: "📚", description: "Documentación de EduTekalab", url: "./T04.2.pdf" }] },
+      parcial01: { title: "Parcial 01: Evaluación Integral", description: "Diseño de sesión de aprendizaje con IA", files: [{ name: "Estructura de la Elaboración", icon: "💬", description: "Planificación de una sesión de aprendizaje", url: "./E01.1.pdf" }, { name: "Presentación de la Estructura", icon: "✨", description: "Diseño didáctico con IA", url: "./E01.2.pdf" }, { name: "Sesión de Aprendizaje", icon: "🎓", description: "Implementación de sesión de aprendizaje", url: "./E01.3.pdf" }] },
+      eval02: { title: "Evaluación Continua 2: Proyecto Multimedia", description: "Video animado producido con herramientas IA", files: [{ name: "Video Animado - YouTube", icon: "🎬", description: "Video creativo producido integrando Suno (música IA), Gemini (imágenes), e InVideo.AI (edición).", url: "https://youtu.be/I4_NeTJIfLs", isVideo: true }] }
     };
 
-    // Abrir modal
     function openModal(contentKey) {
       const data = contentData[contentKey];
       const header = document.getElementById("modal-header");
       const filesList = document.getElementById("files-list");
       
-      header.innerHTML = `
-        <div class="modal-title">${data.title}</div>
-        <div class="modal-description">${data.description}</div>
-      `;
+      header.innerHTML = `<div class="modal-title">${data.title}</div><div class="modal-description">${data.description}</div>`;
+      filesList.innerHTML = data.files.map((file, index) => `<div class="file-tab ${index === 0 ? 'active' : ''}" onclick="displayFile('${file.url}', ${index}, ${file.isVideo ? 'true' : 'false'})">${file.icon} ${file.name}</div>`).join('');
       
-      // Crear pestañas de archivos
-      filesList.innerHTML = data.files.map((file, index) => `
-        <div class="file-tab ${index === 0 ? 'active' : ''}" onclick="displayFile('${file.url}', ${index})">
-          ${file.icon} ${file.name}
-        </div>
-      `).join('');
-      
-      // Mostrar el primer archivo por defecto
       if (data.files.length > 0) {
-        displayFile(data.files[0].url, 0);
+        displayFile(data.files[0].url, 0, data.files[0].isVideo ? true : false);
       }
       
       document.getElementById("modal-overlay").classList.add("active");
     }
 
-    // Cerrar modal
     function closeModal(event) {
       if (event && event.target !== document.getElementById("modal-overlay")) return;
       document.getElementById("modal-overlay").classList.remove("active");
       document.getElementById("file-viewer").src = "about:blank";
     }
 
-    // Mostrar archivo en el viewer
-    function displayFile(url, index) {
+    function displayFile(url, index, isVideo) {
       const viewer = document.getElementById("file-viewer");
-      const tabs = document.querySelectorAll(".file-tab");
-      
-      // Actualizar pestaña activa
-      tabs.forEach((tab, i) => {
-        if (i === index) {
-          tab.classList.add("active");
-        } else {
-          tab.classList.remove("active");
-        }
+      document.querySelectorAll(".file-tab").forEach((tab, i) => {
+        tab.classList.toggle("active", i === index);
       });
       
-      // Mostrar archivo
-      if (url && url !== "#") {
+      if (isVideo) {
+        viewer.srcdoc = `<html><head><style>body { margin: 0; padding: 20px; background: #0a0a14; display: flex; align-items: center; justify-content: center; height: 100%; } .video-container { width: 100%; max-width: 800px; } .video-button { background: linear-gradient(135deg, #00d4ff, #0099ff); color: #0f0f1e; border: none; padding: 15px 30px; font-size: 16px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; width: 100%; } .video-button:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3); }</style></head><body><div class="video-container"><button class="video-button" onclick="window.open('${url}', '_blank')">▶ Abrir Video en YouTube</button></div></body></html>`;
+      } else if (url && url !== "#") {
         viewer.src = url;
       } else {
-        viewer.src = "about:blank";
-        viewer.srcdoc = `
-          <html>
-            <head>
-              <style>
-                body { 
-                  margin: 0; 
-                  padding: 20px; 
-                  background: #0a0a14; 
-                  color: #a0a0a0; 
-                  font-family: Poppins, sans-serif;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  height: 100%;
-                }
-                .message {
-                  text-align: center;
-                  font-size: 16px;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="message">
-                📄 El archivo aún no está disponible.<br>Por favor, contacta al grupo para obtenerlo.
-              </div>
-            </body>
-          </html>
-        `;
+        viewer.srcdoc = `<html><head><style>body { margin: 0; padding: 20px; background: #0a0a14; color: #a0a0a0; font-family: Poppins, sans-serif; display: flex; align-items: center; justify-content: center; height: 100%; } .message { text-align: center; font-size: 16px; }</style></head><body><div class="message">📄 El archivo aún no está disponible.</div></body></html>`;
       }
     }
 
-    // Agregar listeners a tarjetas
-    function addCardListeners() {
-      // Usar event delegation para tarjetas dentro de tarea-card
-      document.addEventListener("click", function(e) {
-        const card = e.target.closest(".tarea-card");
-        if (card) {
-          const id = card.id;
-          if (id) {
-            openModal(id);
-          }
-        }
-      });
+    document.addEventListener("click", function(e) {
+      const card = e.target.closest(".tarea-card") || e.target.closest(".evaluacion-card");
+      if (card && card.id) openModal(card.id);
+    });
 
-      // También para evaluaciones
-      document.addEventListener("click", function(e) {
-        const card = e.target.closest(".evaluacion-card");
-        if (card) {
-          const id = card.id;
-          if (id) {
-            openModal(id);
-          }
-        }
-      });
-    }
-
-    // Typing effect for tools
-    const tools = [
-      "ChatGPT",
-      "Gemini",
-      "Prompt Engineering",
-      "MagicSchool",
-      "Wayground",
-      "Quizziz",
-      "EduTekalab",
-      "Califica IA",
-      "Suno"
-    ];
-
-    let currentToolIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const pauseBetweenTools = 2000;
+    const tools = ["ChatGPT", "Gemini", "Prompt Engineering", "MagicSchool", "Wayground", "Quizziz", "EduTekalab", "Califica IA", "Suno"];
+    let currentToolIndex = 0, currentCharIndex = 0, isDeleting = false;
 
     function typeEffect() {
       const container = document.getElementById("typing-container");
       const currentTool = tools[currentToolIndex];
 
       if (isDeleting) {
-        if (currentCharIndex > 0) {
-          currentCharIndex--;
-          container.innerHTML = `Aprendimos sobre <strong>${currentTool.substring(
-            0,
-            currentCharIndex
-          )}</strong>`;
-          setTimeout(typeEffect, deletingSpeed);
-        } else {
-          isDeleting = false;
-          currentToolIndex = (currentToolIndex + 1) % tools.length;
-          setTimeout(typeEffect, 200);
-        }
+        currentCharIndex--;
+        container.innerHTML = `Aprendimos sobre <strong>${currentTool.substring(0, currentCharIndex)}</strong>`;
+        setTimeout(typeEffect, currentCharIndex === 0 ? 200 : 50);
+        if (currentCharIndex === 0) { isDeleting = false; currentToolIndex = (currentToolIndex + 1) % tools.length; }
       } else {
-        if (currentCharIndex < currentTool.length) {
-          currentCharIndex++;
-          container.innerHTML = `Aprendimos sobre <strong>${currentTool.substring(
-            0,
-            currentCharIndex
-          )}</strong>`;
-          setTimeout(typeEffect, typingSpeed);
-        } else {
-          isDeleting = true;
-          setTimeout(typeEffect, pauseBetweenTools);
-        }
+        currentCharIndex++;
+        container.innerHTML = `Aprendimos sobre <strong>${currentTool.substring(0, currentCharIndex)}</strong>`;
+        setTimeout(typeEffect, currentCharIndex === currentTool.length ? 2000 : 100);
+        if (currentCharIndex === currentTool.length) isDeleting = true;
       }
     }
 
-    // Set active nav link
     function setActive(element) {
-      document.querySelectorAll(".nav-link").forEach((link) => {
-        link.classList.remove("active");
-      });
+      document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
       element.classList.add("active");
-
-      // Hide all sections and show selected one
+      
       const href = element.getAttribute("href");
       if (href && href.startsWith("#")) {
-        document.querySelectorAll(".section-content").forEach((section) => {
-          section.classList.remove("active");
-        });
-        
+        document.querySelectorAll(".section-content").forEach(section => section.classList.remove("active"));
         const sectionId = href.substring(1);
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
           targetSection.classList.add("active");
-          targetSection.scrollIntoView({ behavior: "smooth" });
-          
-          // Si es una tarea o evaluación, abre el modal
-          if (contentData[sectionId]) {
-            setTimeout(() => openModal(sectionId), 300);
-          }
+          if (contentData[sectionId]) setTimeout(() => openModal(sectionId), 300);
         }
       }
     }
 
-    // Update UI based on config
     function updateUI() {
       document.getElementById("grupo-nombre").textContent = config.grupo_nombre;
       const list = document.getElementById("integrantes-list");
-      list.innerHTML = `
-        <li class="integrantes-item">${config.integrante_1}</li>
-        <li class="integrantes-item">${config.integrante_2}</li>
-        <li class="integrantes-item">${config.integrante_3}</li>
-      `;
+      list.innerHTML = `<li class="integrantes-item">${config.integrante_1}</li><li class="integrantes-item">${config.integrante_2}</li><li class="integrantes-item">${config.integrante_3}</li>`;
     }
 
-    // Element SDK integration
     if (window.elementSdk) {
       window.elementSdk.init({
         defaultConfig,
-        onConfigChange: async (newConfig) => {
-          Object.assign(config, newConfig);
-          updateUI();
-        },
-        mapToCapabilities: () => ({
-          recolorables: [],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: () =>
-          new Map([
-            ["grupo_nombre", config.grupo_nombre],
-            ["integrante_1", config.integrante_1],
-            ["integrante_2", config.integrante_2],
-            ["integrante_3", config.integrante_3]
-          ])
+        onConfigChange: async (newConfig) => { Object.assign(config, newConfig); updateUI(); },
+        mapToCapabilities: () => ({ recolorables: [], borderables: [], fontEditable: undefined, fontSizeable: undefined }),
+        mapToEditPanelValues: () => new Map([["grupo_nombre", config.grupo_nombre], ["integrante_1", config.integrante_1], ["integrante_2", config.integrante_2], ["integrante_3", config.integrante_3]])
       });
     }
 
-    // Initialize
     lucide.createIcons();
     typeEffect();
     updateUI();
-    addCardListeners();
-
-    // Smooth scroll behavior
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        const href = this.getAttribute("href");
-        if (href !== "#") {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-          }
-        }
-      });
-    });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de529ce960bcdca',t:'MTc3Mzg0NjYxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de5f8a391b4cdca',t:'MTc3Mzg1NTA4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
